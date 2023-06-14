@@ -1,7 +1,5 @@
-import { Card as ChakraCard } from '@chakra-ui/react';
-
 const Card = ({ children }) => {
-  return <ChakraCard>{children}</ChakraCard>;
+  return <div>{children}</div>;
 };
 
 export default Card;

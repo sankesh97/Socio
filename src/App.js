@@ -1,14 +1,13 @@
 import { Route, Routes } from 'react-router-dom';
 import Landing from './pages/Landing/Landing';
-import { Container } from '@chakra-ui/react';
 
 function App() {
   return (
-    <Container>
+    <div className='container-fluid'>
       <Routes>
         <Route path='/' element={<Landing />}></Route>
       </Routes>
-    </Container>
+    </div>
   );
 }
 
