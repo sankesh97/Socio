@@ -1,3 +1,7 @@
 .text-teal {
   color: teal;
 }
+
+.no-text-decoration {
+  text-decoration: none;
+}

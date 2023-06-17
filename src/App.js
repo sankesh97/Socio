@@ -1,12 +1,23 @@
 import { Route, Routes } from 'react-router-dom';
 import Landing from './pages/Landing/Landing';
+import Login from './pages/Login/Login';
+import Home from './pages/Home/Home';
+import Users from './pages/Users/Users';
 
 function App() {
   return (
-    <div className='container-fluid'>
+    <div className='container-fluid px-0'>
       <Routes>
-        <Route path='/' element={<Landing />}></Route>
+        {!localStorage.getItem('token') ? (
+          <Route path='/' element={<Landing />}></Route>
+        ) : (
+          <Route path='/' element={<Users />}></Route>
+        )}
+        <Route path='/login' element={<Login />}></Route>
+        <Route path='/home' element={<Home />}></Route>
+        <Route path='/users' element={<Users />}></Route>
       </Routes>
+      {console.log(localStorage.getItem('token'))}
     </div>
   );
 }

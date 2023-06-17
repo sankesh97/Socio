@@ -9,6 +9,7 @@ import 'bootstrap-icons/font/bootstrap-icons.min.css';
 
 import './index.css';
 import App from './App';
+import { AppProvider } from './context/AppContext';
 
 makeServer();
 
@@ -16,7 +17,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <AppProvider>
+        <App />
+      </AppProvider>
     </BrowserRouter>
   </React.StrictMode>
 );
