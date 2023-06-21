@@ -1,31 +1,26 @@
-import { useContext } from 'react';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
+import { useContext, useState } from 'react';
 
 import { AuthContext } from '../../context/AppContext';
 import landingImage from '../../assets/landingPageImg.svg';
 import Button from '../../components/Button/Button';
 
 const Register = () => {
-  const { loginHandler } = useContext(AuthContext);
-
-  const formik = useFormik({
-    initialValues: {
-      username: '',
-      password: '',
-    },
-    validationSchema: Yup.object({
-      username: Yup.string()
-        .email('Invalid email address')
-        .required('Required'),
-      password: Yup.string()
-        .required('Password is a required field')
-        .min(8, 'Password must be at least 8 characters'),
-    }),
-    onSubmit: (values) => {
-      loginHandler(values);
-    },
+  const { signupHandler } = useContext(AuthContext);
+  const [formValues, setFormValues] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    userName: '',
+    password: '',
+    confirmPassword: '',
   });
+  const [showPass, setShowPass] = useState(false);
+
+  const onChangeHandler = (id, value) => {
+    setFormValues((prevState) => {
+      return { ...prevState, [id]: value };
+    });
+  };
 
   return (
     <div className='container'>
@@ -40,7 +35,59 @@ const Register = () => {
               <h4 className='text-teal text-center'> Login </h4>
               <br />
               <div className='d-flex justify-content-center'>
-                <form onSubmit={formik.handleSubmit}>
+                <form
+                  onSubmit={(event) => {
+                    event.preventDefault();
+                    signupHandler(formValues);
+                  }}
+                >
+                  {/* First Name */}
+                  <div className='mb-3'>
+                    <label htmlFor='firstName' className='form-label'>
+                      First Name
+                    </label>
+                    <input
+                      type='text'
+                      className='form-control'
+                      name='firstName'
+                      id='firstName'
+                      onChange={(event) => {
+                        onChangeHandler(event.target.id, event.target.value);
+                      }}
+                      required
+                    />
+                  </div>
+                  {/* Last Name */}
+                  <div className='mb-3'>
+                    <label htmlFor='lastName' className='form-label'>
+                      Last Name
+                    </label>
+                    <input
+                      type='text'
+                      className='form-control'
+                      id='lastName'
+                      onChange={(event) => {
+                        onChangeHandler(event.target.id, event.target.value);
+                      }}
+                      required
+                    />
+                  </div>
+                  {/* User Name */}
+                  <div className='mb-3'>
+                    <label htmlFor='UserName' className='form-label'>
+                      User Name
+                    </label>
+                    <input
+                      type='text'
+                      className='form-control'
+                      id='userName'
+                      onChange={(event) => {
+                        onChangeHandler(event.target.id, event.target.value);
+                      }}
+                      required
+                    />
+                  </div>
+                  {/* Email */}
                   <div className='mb-3'>
                     <label htmlFor='InputEmail' className='form-label'>
                       Email address
@@ -48,33 +95,62 @@ const Register = () => {
                     <input
                       type='email'
                       className='form-control'
-                      id='InputEmail'
+                      id='email'
+                      onChange={(event) => {
+                        onChangeHandler(event.target.id, event.target.value);
+                      }}
                       aria-describedby='EmailHelp'
-                      {...formik.getFieldProps('username')}
                     />
-                    <div id='EmailHelp' className='form-text'>
-                      {formik.touched.email && formik.errors.email ? (
-                        <div>{formik.errors.email}</div>
-                      ) : null}
-                    </div>
                   </div>
-                  <div className='mb-3'>
-                    <label htmlFor='InputPassword' className='form-label'>
-                      Password
-                    </label>
+                  {/* Password */}
+                  <label htmlFor='password' className='form-label'>
+                    Password
+                  </label>
+                  <div className='mb-3 input-group'>
                     <input
-                      type='password'
+                      type={showPass ? 'text' : 'password'}
                       className='form-control'
-                      id='InputPassword'
-                      aria-describedby='PasswordHelp'
-                      {...formik.getFieldProps('password')}
+                      id='password'
+                      onChange={(event) => {
+                        onChangeHandler(event.target.id, event.target.value);
+                      }}
                     />
+                    <span
+                      className='input-group-text'
+                      onClick={() => setShowPass(!showPass)}
+                    >
+                      {showPass ? (
+                        <i className='bi bi-eye-slash'></i>
+                      ) : (
+                        <i className='bi bi-eye'></i>
+                      )}
+                    </span>
                   </div>
-                  <div id='PasswordHelp' className='form-text'>
-                    {formik.touched.password && formik.errors.password
-                      ? formik.errors.password
-                      : null}
+                  {/* Confirm Password */}
+                  <label htmlFor='confirmPassword' className='form-label'>
+                    Confirm Password
+                  </label>
+                  <div className='mb-3 input-group'>
+                    <input
+                      type={showPass ? 'text' : 'password'}
+                      className='form-control'
+                      id='confirmPassword'
+                      onChange={(event) => {
+                        onChangeHandler(event.target.id, event.target.value);
+                      }}
+                    />
+                    <span
+                      className='input-group-text'
+                      onClick={() => setShowPass(!showPass)}
+                    >
+                      {showPass ? (
+                        <i className='bi bi-eye-slash'></i>
+                      ) : (
+                        <i className='bi bi-eye'></i>
+                      )}
+                    </span>
                   </div>
+
                   <Button type='submit'>Submit</Button>
                 </form>
               </div>

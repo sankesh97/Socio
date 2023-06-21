@@ -1,7 +1,10 @@
 import { NavLink } from 'react-router-dom';
 import './Header.css';
+import { useContext } from 'react';
+import { AuthContext } from '../../context/AuthContext';
 
 const Header = () => {
+  const { logoutHandler } = useContext(AuthContext);
   return (
     <>
       <nav className='navbar py-2'>
@@ -9,15 +12,16 @@ const Header = () => {
           <NavLink style={{ textDecoration: 'none' }} to='/'>
             <h1 className='navbar-brand'>Socio</h1>
           </NavLink>
+          <button
+            className='btn btn-dark'
+            onClick={() => {
+              logoutHandler();
+            }}
+          >
+            Logout
+          </button>
         </div>
       </nav>
-      <div className='container-fluid'>
-        <div className='row'>
-          <div className='col-md-3'></div>
-          <div className='col-md-6'></div>
-          <div className='col-md-3'></div>
-        </div>
-      </div>
     </>
   );
 };

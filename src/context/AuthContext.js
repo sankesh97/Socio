@@ -7,20 +7,27 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [loggedInUser, setLoggedInUser] = useState();
   const navigate = useNavigate();
+  const [errMessage, setErrMessage] = useState('');
 
   // Singup Handler
-  const signupHandler = async ({ email, password, firstName, lastName }) => {
+  const signupHandler = async ({
+    email,
+    password,
+    userName,
+    firstName,
+    lastName,
+  }) => {
     try {
-      const { status, data } = await axios.post(`/api/auth/signup`, {
+      const response = await axios.post(`/api/auth/signup`, {
         email,
         password,
         firstName,
         lastName,
+        userName,
       });
-      if (status === 200) {
-        setLoggedInUser(data.user);
-        localStorage.setItem('token', data.encodedToken);
-      }
+      setLoggedInUser(response.data.user);
+      localStorage.setItem('token', response.data.encodedToken);
+      navigate('/users');
     } catch (err) {
       console.log(err);
     }
