@@ -2,6 +2,10 @@
   color: teal;
 }
 
+.bg-teal {
+  background-color: teal;
+}
+
 .no-text-decoration {
   text-decoration: none;
 }

@@ -7,7 +7,7 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [loggedInUser, setLoggedInUser] = useState();
   const navigate = useNavigate();
-  const [errMessage, setErrMessage] = useState('');
+  //const [errMessage, setErrMessage] = useState('');
 
   // Singup Handler
   const signupHandler = async ({
@@ -28,22 +28,23 @@ export const AuthProvider = ({ children }) => {
       setLoggedInUser(response.data.user);
       localStorage.setItem('token', response.data.encodedToken);
       navigate('/users');
+      console.log(loggedInUser);
     } catch (err) {
       console.log(err);
     }
   };
 
   // Login Handler
-  const loginHandler = async ({ username, password }) => {
-    console.log({ username, password });
+  const loginHandler = async ({ userName, password }) => {
+    console.log({ userName, password });
     try {
-      const { status, data } = await axios.post(`/api/auth/login`, {
-        username,
+      const response = await axios.post(`/api/auth/login`, {
+        userName,
         password,
       });
-      if (status === 200) {
-        setLoggedInUser(data.user);
-        localStorage.setItem('token', data.encodedToken);
+      if (response.status === 200) {
+        setLoggedInUser(response.data.foundUser);
+        localStorage.setItem('token', response.data.encodedToken);
         navigate('/users');
       }
     } catch (err) {
