@@ -1,30 +1,38 @@
 import { NavLink } from 'react-router-dom';
 import Card from '../Card/Card';
+import { Button } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 
 const LeftSideBar = () => {
   return (
     <div className='d-flex flex-column justify-content-between'>
       <Card>
         <div className='d-grid gap-2'>
-          <NavLink className='btn btn-outline-dark' to='/home'>
-            <i className='bi bi-house'></i> Home
-          </NavLink>
-
-          <NavLink className='btn btn-outline-dark' to='/explore'>
-            <i className='bi bi-rocket-takeoff'></i> Explore
-          </NavLink>
-
-          <NavLink className='btn btn-outline-dark' to='/bookmark'>
-            <i className='bi bi-bookmark-heart'></i> Bookmark
-          </NavLink>
-
-          <NavLink className='btn btn-outline-dark' to='/profile'>
-            <i className='bi bi-person'></i> Profile
-          </NavLink>
-
-          <NavLink className='btn btn-outline-dark' to='/profile'>
-            <i className='bi bi-plus-square'></i> Create New Post
-          </NavLink>
+          <LinkContainer to='/user'>
+            <Button variant='outline-dark'>
+              <i className='bi bi-house'></i> Home
+            </Button>
+          </LinkContainer>
+          <LinkContainer to='/user/explore'>
+            <Button variant='outline-dark'>
+              <i className='bi bi-rocket-takeoff'></i> Explore
+            </Button>
+          </LinkContainer>
+          <LinkContainer to='/user/bookmark'>
+            <Button variant='outline-dark'>
+              <i className='bi bi-bookmark-heart'></i> Bookmark
+            </Button>
+          </LinkContainer>
+          <LinkContainer to='/user/profile'>
+            <Button variant='outline-dark'>
+              <i className='bi bi-person'></i> Profile
+            </Button>
+          </LinkContainer>
+          <LinkContainer to='/user/profile'>
+            <Button variant='outline-dark'>
+              <i className='bi bi-plus-square'></i> Create New Post
+            </Button>
+          </LinkContainer>
         </div>
       </Card>
     </div>

@@ -7,7 +7,6 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [loggedInUser, setLoggedInUser] = useState();
   const navigate = useNavigate();
-  //const [errMessage, setErrMessage] = useState('');
 
   // Singup Handler
   const signupHandler = async ({
@@ -26,7 +25,11 @@ export const AuthProvider = ({ children }) => {
         userName,
       });
       setLoggedInUser(response.data.user);
-      localStorage.setItem('token', response.data.encodedToken);
+      sessionStorage.setItem('token', response.data.encodedToken);
+      sessionStorage.setItem(
+        'loggedInUser',
+        JSON.stringify(response.data.foundUser)
+      );
       navigate('/users');
       console.log(loggedInUser);
     } catch (err) {
@@ -43,9 +46,14 @@ export const AuthProvider = ({ children }) => {
         password,
       });
       if (response.status === 200) {
+        console.log(response);
         setLoggedInUser(response.data.foundUser);
-        localStorage.setItem('token', response.data.encodedToken);
-        navigate('/users');
+        sessionStorage.setItem(
+          'loggedInUser',
+          JSON.stringify(response.data.foundUser)
+        );
+        sessionStorage.setItem('token', response.data.encodedToken);
+        navigate('/user');
       }
     } catch (err) {
       console.log(err);
@@ -54,7 +62,7 @@ export const AuthProvider = ({ children }) => {
 
   // Logout Handler
   const logoutHandler = async () => {
-    localStorage.removeItem('token');
+    sessionStorage.removeItem('token');
     setLoggedInUser();
     navigate('/');
   };

@@ -6,6 +6,7 @@ export const UserContext = createContext();
 export const UserProvider = ({ children }) => {
   const [userList, setUserList] = useState([]);
   const [currentUser, setCurrentUser] = useState();
+  const [showModal, setShowModal] = useState(false);
 
   // Get All Users
   const getUsers = async () => {
@@ -17,7 +18,7 @@ export const UserProvider = ({ children }) => {
     }
   };
 
-  // Get A Users
+  // Get A User
   const GetAUser = async (userId) => {
     try {
       const { status, data } = await axios.get(`/api/users/${userId}`);
@@ -40,6 +41,7 @@ export const UserProvider = ({ children }) => {
       console.log(err);
     }
   };
+
   return (
     <UserContext.Provider
       value={{ userList, currentUser, getUsers, GetAUser, editUser }}

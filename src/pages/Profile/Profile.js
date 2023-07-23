@@ -1,10 +1,9 @@
-import { useContext } from 'react';
 import Card from '../../components/Card/Card';
 import Post from '../../components/Post/Post';
-import { AuthContext } from '../../context/AppContext';
 
 const Profile = () => {
-  const { loggedInUser } = useContext(AuthContext);
+  const loggedInUser = JSON.parse(sessionStorage.getItem('loggedInUser'));
+
   return (
     <>
       {loggedInUser ? (

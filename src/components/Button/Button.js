@@ -1,13 +1,18 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import './Button.css';
 
 const Button = ({ children, to, type }) => {
+  const navigate = useNavigate();
   const addLink = to ? (
-    <NavLink style={{ textDecoration: 'none' }} to={to}>
-      <button className='btn btn-teal' type={type}>
-        {children}
-      </button>
-    </NavLink>
+    <button
+      onClick={() => {
+        navigate(to);
+      }}
+      className='btn btn-teal'
+      type={type}
+    >
+      {children}
+    </button>
   ) : (
     <button className='btn btn-teal' type={type}>
       {children}
