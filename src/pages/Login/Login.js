@@ -14,9 +14,7 @@ const Login = () => {
       password: '',
     },
     validationSchema: Yup.object({
-      userName: Yup.string()
-        .email('Invalid email address')
-        .required('Required'),
+      userName: Yup.string().required('Required'),
       password: Yup.string()
         .required('Password is a required field')
         .min(3, 'Password must be at least 8 characters'),
@@ -35,10 +33,10 @@ const Login = () => {
         <form onSubmit={formik.handleSubmit}>
           <div className='mb-3'>
             <label htmlFor='InputEmail' className='form-label'>
-              Email address
+              Username
             </label>
             <input
-              type='email'
+              type='text'
               className='form-control'
               id='InputEmail'
               aria-describedby='EmailHelp'

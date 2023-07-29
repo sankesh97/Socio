@@ -1,4 +1,4 @@
 const Bookmark = () => {
-  return <>This is Bookmarks page.</>;
+  return <></>;
 };
 export default Bookmark;

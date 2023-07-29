@@ -1,4 +1,4 @@
-import { createContext, useReducer, useState } from 'react';
+import { createContext, useState } from 'react';
 import axios from 'axios';
 
 export const PostsContext = createContext();
@@ -28,9 +28,9 @@ export const PostsProvider = ({ children }) => {
   };
 
   // Get Post by Username
-  const getPostsByUsername = async (username) => {
+  const getPostsByUsername = async (userName) => {
     try {
-      const { status, data } = await axios.get(`/api/posts/user/${username}`);
+      const { status, data } = await axios.get(`/api/posts/user/${userName}`);
       if (status === 200) setuserNamePostList(data.posts);
     } catch (err) {
       console.log(err);

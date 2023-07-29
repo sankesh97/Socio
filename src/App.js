@@ -25,6 +25,7 @@ function App() {
           <Route path='profile' element={<Profile />}></Route>
           <Route path='explore' element={<Explore />}></Route>
           <Route path='bookmark' element={<Bookmark />}></Route>
+          <Route path=':_id' element={<Profile />}></Route>
         </Route>
       </Routes>
       {console.log(localStorage.getItem('token'))}

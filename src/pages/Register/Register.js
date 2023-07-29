@@ -1,7 +1,6 @@
 import { useContext, useState } from 'react';
 
 import { AuthContext } from '../../context/AppContext';
-import landingImage from '../../assets/landingPageImg.svg';
 import Button from '../../components/Button/Button';
 
 const Register = () => {

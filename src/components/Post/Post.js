@@ -1,35 +1,27 @@
-const Post = ({ userName, firstName, lastName, content }) => {
+import * as dayjs from 'dayjs';
+import dateDiffHandler from '../../utils/dateDiffHandler';
+
+const Post = ({ postInfo }) => {
+  const { _id, username, content, createdAt, likeCount, dislikedBy, likedBy } =
+    postInfo;
   return (
-    <div className='card'>
+    <div className='card my-3'>
       <div className='card-header d-flex justify-content-between'>
         <div>
-          <img
-            src='https://picsum.photos/32'
-            className='rounded-circle'
-            alt='img-fluid'
-          />{' '}
-          <strong>Sankesh Jain</strong> • @chicku97
+          <img className='rounded-circle' alt='img-fluid' width='36px' />{' '}
+          <strong>{`${username}`}</strong>
         </div>
-        <div>1min</div>
+        <div>{dateDiffHandler(createdAt)}</div>
       </div>
       <div className='card-body'>
-        <p className='card-text'>
-          Non programmers on my timeline. Attention.
-          <br /> After placing 100+ programmers i in top Indian startups, I am
-          thinking of coming up with a program for business roles as well.
-          <br /> Interested in helping me build this course? Join the telegram
-          group (in next tweet)
-        </p>
+        <p className='card-text'>{content}</p>
       </div>
       <div className='card-footer d-flex justify-content-around bg-teal '>
         <span>
           <i className='bi bi-heart'></i>
         </span>
         <span>
-          <i className='bi bi-chat-left'></i>
-        </span>
-        <span>
-          <i className='bi bi-share'></i>
+          <i className='bi bi-bookmark-heart'></i>
         </span>
         <span>
           <i className='bi bi-pencil-square'></i>
