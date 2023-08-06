@@ -1,11 +1,13 @@
 import { createContext, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import useLocalStorage from 'use-local-storage';
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [loggedInUser, setLoggedInUser] = useState();
+  const [loggedInUser, setLoggedInUser] = useLocalStorage('loggedInUser', null);
+  const [token, setToken] = useLocalStorage('token');
   const navigate = useNavigate();
 
   // Singup Handler
@@ -25,12 +27,8 @@ export const AuthProvider = ({ children }) => {
         userName,
       });
       setLoggedInUser(response.data.user);
-      sessionStorage.setItem('token', response.data.encodedToken);
-      sessionStorage.setItem(
-        'loggedInUser',
-        JSON.stringify(response.data.foundUser)
-      );
-      navigate('/users');
+      setToken(response.data.encodedToken);
+      navigate('/user/home');
       console.log(loggedInUser);
     } catch (err) {
       console.log(err);
@@ -46,14 +44,9 @@ export const AuthProvider = ({ children }) => {
         password,
       });
       if (response.status === 200) {
-        console.log(response);
+        setToken(response.data.encodedToken);
         setLoggedInUser(response.data.foundUser);
-        sessionStorage.setItem(
-          'loggedInUser',
-          JSON.stringify(response.data.foundUser)
-        );
-        sessionStorage.setItem('token', response.data.encodedToken);
-        navigate('/user');
+        navigate('/user/home');
       }
     } catch (err) {
       console.log(err);
@@ -62,13 +55,19 @@ export const AuthProvider = ({ children }) => {
 
   // Logout Handler
   const logoutHandler = async () => {
-    sessionStorage.removeItem('token');
+    setToken();
     setLoggedInUser();
     navigate('/');
   };
   return (
     <AuthContext.Provider
-      value={{ signupHandler, loginHandler, loggedInUser, logoutHandler }}
+      value={{
+        signupHandler,
+        loginHandler,
+        loggedInUser,
+        logoutHandler,
+        token,
+      }}
     >
       {children}
     </AuthContext.Provider>

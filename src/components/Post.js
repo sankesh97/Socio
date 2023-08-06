@@ -1,4 +1,3 @@
-import * as dayjs from 'dayjs';
 import dateDiffHandler from '../utils/dateDiffHandler';
 
 const Post = ({ postInfo, loggedInUser }) => {

@@ -1,9 +1,16 @@
-import { useContext } from 'react';
-import { AuthContext } from '../../context/AppContext';
-import CreatePost from '../../components/CreatePost';
+import { useContext, useEffect } from 'react';
 import { Form } from 'react-bootstrap';
 
+import { AuthContext, PostsContext } from '../../context/AppContext';
+import CreatePost from '../../components/CreatePost';
+import Post from '../../components/Post';
+
 const Home = () => {
+  const { postList, getPosts } = useContext(PostsContext);
+  const { loggedInUser } = useContext(AuthContext);
+  useEffect(() => {
+    getPosts();
+  }, []);
   return (
     <>
       <CreatePost />
@@ -17,6 +24,19 @@ const Home = () => {
             <option value='Date'>Date</option>
           </Form.Select>
         </div>
+      </div>
+      <div>
+        {postList ? (
+          postList.map((postInfo) => (
+            <Post
+              key={postInfo._id}
+              postInfo={postInfo}
+              loggedInUser={loggedInUser}
+            ></Post>
+          ))
+        ) : (
+          <p>There are no posts</p>
+        )}
       </div>
     </>
   );

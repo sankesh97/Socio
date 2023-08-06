@@ -4,9 +4,10 @@ import Post from '../../components/Post';
 import { Button } from 'react-bootstrap';
 import { UserContext } from '../../context/UsersContext';
 import { PostsContext } from '../../context/PostsContext';
+import { AuthContext } from '../../context/AuthContext';
 
 const Profile = () => {
-  const loggedInUser = JSON.parse(sessionStorage.getItem('loggedInUser'));
+  const { loggedInUser } = useContext(AuthContext);
   const { handleShow } = useContext(UserContext);
   const { userNamePostList, getPostsByUsername } = useContext(PostsContext);
 

@@ -38,6 +38,21 @@ export const PostsProvider = ({ children }) => {
     }
   };
 
+  // Create a New Post
+  const createNewPost = async (token, content) => {
+    console.log(token, content);
+    try {
+      const { status, data } = await axios.post(
+        `/api/posts`,
+        { content: content },
+        { headers: { authorization: token } }
+      );
+      if (status === 200) setPostList(data.posts);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <PostsContext.Provider
       value={{
@@ -46,6 +61,7 @@ export const PostsProvider = ({ children }) => {
         getPosts,
         getPostById,
         getPostsByUsername,
+        createNewPost,
       }}
     >
       {children}
