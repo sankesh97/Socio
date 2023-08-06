@@ -1,10 +1,9 @@
 import { useContext, useEffect } from 'react';
-import Card from '../../components/Card/Card';
-import Post from '../../components/Post/Post';
+import Card from '../../components/Card';
+import Post from '../../components/Post';
 import { Button } from 'react-bootstrap';
 import { UserContext } from '../../context/UsersContext';
 import { PostsContext } from '../../context/PostsContext';
-import { useParams } from 'react-router-dom';
 
 const Profile = () => {
   const loggedInUser = JSON.parse(sessionStorage.getItem('loggedInUser'));

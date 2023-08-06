@@ -1,9 +1,9 @@
 import { NavLink } from 'react-router-dom';
-import Card from '../Card/Card';
+import Card from './Card';
 
 const RightSideBar = () => {
   return (
-    <div className='d-flex flex-column justify-content-between'>
+    <div className='d-flex flex-column justify-content-between sticky-md-top'>
       <Card>
         <div className='form-floating'>
           <input

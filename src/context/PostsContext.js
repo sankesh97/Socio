@@ -7,6 +7,7 @@ export const PostsProvider = ({ children }) => {
   const [postList, setPostList] = useState([]);
   const [userNamePostList, setuserNamePostList] = useState([]);
   //const [currentUserPosts, dispatch] = useReducer(CurrentUserPostsHandler, []);
+
   // Get All Posts
   const getPosts = async () => {
     try {

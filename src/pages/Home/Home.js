@@ -1,14 +1,21 @@
 import { useContext } from 'react';
 import { AuthContext } from '../../context/AppContext';
+import CreatePost from '../../components/CreatePost';
+import { Form } from 'react-bootstrap';
 
 const Home = () => {
   return (
     <>
-      <div className='container-fluid'>
-        <div className='row'>
-          <div className='col-md-3'></div>
-          <div className='col-md-6'></div>
-          <div className='col-md-3'></div>
+      <CreatePost />
+      <hr />
+      <div className='d-flex justify-content-between'>
+        <h3>Latest Posts</h3>
+        <div>
+          <Form.Select aria-label='Sorting Dropdown'>
+            <option>Sort By</option>
+            <option value='Trending'>Trending</option>
+            <option value='Date'>Date</option>
+          </Form.Select>
         </div>
       </div>
     </>
