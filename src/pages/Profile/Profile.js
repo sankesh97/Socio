@@ -2,13 +2,13 @@ import { useContext, useEffect } from 'react';
 import Card from '../../components/Card';
 import Post from '../../components/Post';
 import { Button } from 'react-bootstrap';
-import { UserContext } from '../../context/UsersContext';
+import { UsersContext } from '../../context/UsersContext';
 import { PostsContext } from '../../context/PostsContext';
 import { AuthContext } from '../../context/AuthContext';
 
 const Profile = () => {
   const { loggedInUser } = useContext(AuthContext);
-  const { handleShow } = useContext(UserContext);
+  const { handleShow } = useContext(UsersContext);
   const { userNamePostList, getPostsByUsername } = useContext(PostsContext);
 
   useEffect(() => {

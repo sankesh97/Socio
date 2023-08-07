@@ -22,7 +22,7 @@ const CreatePost = () => {
             <Button
               className='btn-teal'
               onClick={() => {
-                createNewPost(token, { content: postContent });
+                createNewPost(token, postContent);
               }}
             >
               Post

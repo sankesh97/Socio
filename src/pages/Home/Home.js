@@ -2,13 +2,16 @@ import { useContext, useEffect } from 'react';
 import { Form } from 'react-bootstrap';
 
 import { AuthContext, PostsContext } from '../../context/AppContext';
+import { UsersContext } from '../../context/UsersContext';
 import CreatePost from '../../components/CreatePost';
 import Post from '../../components/Post';
 
 const Home = () => {
   const { postList, getPosts } = useContext(PostsContext);
   const { loggedInUser } = useContext(AuthContext);
+  const { userList, getUsers } = useContext(UsersContext);
   useEffect(() => {
+    getUsers();
     getPosts();
   }, []);
   return (
@@ -32,6 +35,7 @@ const Home = () => {
               key={postInfo._id}
               postInfo={postInfo}
               loggedInUser={loggedInUser}
+              userList={userList}
             ></Post>
           ))
         ) : (

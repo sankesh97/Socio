@@ -1,15 +1,11 @@
 import { createContext, useState } from 'react';
 import axios from 'axios';
 
-export const UserContext = createContext();
+const UsersContext = createContext();
 
-export const UserProvider = ({ children }) => {
+const UsersProvider = ({ children }) => {
   const [userList, setUserList] = useState([]);
   const [currentUser, setCurrentUser] = useState();
-  const [showModal, setShowModal] = useState(false);
-
-  const handleClose = () => setShowModal(false);
-  const handleShow = () => setShowModal(true);
 
   // Get All Users
   const getUsers = async () => {
@@ -46,20 +42,18 @@ export const UserProvider = ({ children }) => {
   };
 
   return (
-    <UserContext.Provider
+    <UsersContext.Provider
       value={{
         userList,
         currentUser,
         getUsers,
         GetAUser,
         editUser,
-        setShowModal,
-        showModal,
-        handleClose,
-        handleShow,
       }}
     >
       {children}
-    </UserContext.Provider>
+    </UsersContext.Provider>
   );
 };
+
+export { UsersContext, UsersProvider };

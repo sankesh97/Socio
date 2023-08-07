@@ -40,14 +40,14 @@ export const PostsProvider = ({ children }) => {
 
   // Create a New Post
   const createNewPost = async (token, content) => {
-    console.log(token, content);
     try {
       const { status, data } = await axios.post(
         `/api/posts`,
-        { content: content },
+        { postData: { content } },
         { headers: { authorization: token } }
       );
       if (status === 200) setPostList(data.posts);
+      console.log(status, data);
     } catch (error) {
       console.log(error);
     }

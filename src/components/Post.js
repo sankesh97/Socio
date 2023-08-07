@@ -1,19 +1,20 @@
 import dateDiffHandler from '../utils/dateDiffHandler';
 
-const Post = ({ postInfo, loggedInUser }) => {
-  const { username, content, createdAt, likeCount, dislikedBy, likedBy } =
+const Post = ({ postInfo, loggedInUser, userList }) => {
+  const { userName, content, createdAt, likeCount, dislikedBy, likedBy } =
     postInfo;
+
   return (
     <div className='card my-3'>
       <div className='card-header d-flex justify-content-between'>
         <div>
           <img
             className='rounded-circle img-fluid'
-            src
-            alt={username}
+            src={userList.find((user) => user.userName === userName).Avatar}
+            alt={userName}
             width='36px'
           />{' '}
-          <strong>{`${username}`}</strong>
+          <strong>{`${userName}`}</strong>
         </div>
         <div>{dateDiffHandler(createdAt)}</div>
       </div>

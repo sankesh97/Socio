@@ -1,15 +1,15 @@
 import { AuthProvider, AuthContext } from './AuthContext';
-import { UserProvider, UserContext } from './UsersContext';
+import { UsersProvider, UsersContext } from './UsersContext';
 import { PostsProvider, PostsContext } from './PostsContext';
 
-export { AuthContext, UserContext, PostsContext };
+export { AuthContext, UsersContext, PostsContext };
 
 export const AppProvider = ({ children }) => {
   return (
     <AuthProvider>
-      <UserProvider>
+      <UsersProvider>
         <PostsProvider> {children}</PostsProvider>
-      </UserProvider>
+      </UsersProvider>
     </AuthProvider>
   );
 };
