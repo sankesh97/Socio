@@ -1,7 +1,7 @@
 import { useContext, useEffect } from 'react';
+import { Button } from 'react-bootstrap';
 import Card from '../../components/Card';
 import Post from '../../components/Post';
-import { Button } from 'react-bootstrap';
 import { UsersContext } from '../../context/UsersContext';
 import { PostsContext } from '../../context/PostsContext';
 import { AuthContext } from '../../context/AuthContext';

@@ -6,13 +6,12 @@ export const PostsContext = createContext();
 export const PostsProvider = ({ children }) => {
   const [postList, setPostList] = useState([]);
   const [userNamePostList, setuserNamePostList] = useState([]);
-  //const [currentUserPosts, dispatch] = useReducer(CurrentUserPostsHandler, []);
 
   // Get All Posts
   const getPosts = async () => {
     try {
       const { status, data } = await axios.get(`/api/posts`);
-      if (status === 200) setPostList(data.posts);
+      if (status === 200 || 201) setPostList(data.posts);
     } catch (err) {
       console.log(err);
     }
@@ -22,7 +21,7 @@ export const PostsProvider = ({ children }) => {
   const getPostById = async (postId) => {
     try {
       const { status, data } = await axios.get(`/api/posts/${postId}`);
-      if (status === 200) setPostList(data.post);
+      if (status === 200 || 201) setPostList(data.post);
     } catch (err) {
       console.log(err);
     }
@@ -32,7 +31,7 @@ export const PostsProvider = ({ children }) => {
   const getPostsByUsername = async (userName) => {
     try {
       const { status, data } = await axios.get(`/api/posts/user/${userName}`);
-      if (status === 200) setuserNamePostList(data.posts);
+      if (status === 200 || 201) setuserNamePostList(data.posts);
     } catch (err) {
       console.log(err);
     }
@@ -46,8 +45,68 @@ export const PostsProvider = ({ children }) => {
         { postData: { content } },
         { headers: { authorization: token } }
       );
-      if (status === 200) setPostList(data.posts);
+      if (status === 200 || 201) setPostList(data.posts);
       console.log(status, data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  //Delete a Post
+  const DeletePost = async (token) => {
+    try {
+      const { status, data } = await axios.delete(`/api/posts/:postId`, {
+        headers: { authorization: token },
+      });
+      if (status === 200 || 201) setPostList(data.posts);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  //Edit a Post
+  const EditPost = async (token, postData) => {
+    try {
+      const { status, data } = await axios.delete(
+        `/api/posts/${postData._id}`,
+        { postData },
+        {
+          headers: { authorization: token },
+        }
+      );
+      if (status === 200 || 201) setPostList(data.posts);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // Like a Post
+  const likeAPost = async (postId, token) => {
+    try {
+      const { status, data } = await axios.post(
+        `/api/posts/like/${postId}`,
+        {},
+        {
+          headers: { authorization: token },
+        }
+      );
+      if (status === 200 || 201) setPostList(data.posts);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // Dislike a Post
+  const disLikeAPost = async (postId, token) => {
+    try {
+      const { status, data } = await axios.post(
+        `/api/posts/dislike/${postId}`,
+        {},
+        {
+          headers: { authorization: token },
+        }
+      );
+      if (status === 200 || 201) setPostList(data.posts);
     } catch (error) {
       console.log(error);
     }
@@ -62,6 +121,10 @@ export const PostsProvider = ({ children }) => {
         getPostById,
         getPostsByUsername,
         createNewPost,
+        DeletePost,
+        EditPost,
+        likeAPost,
+        disLikeAPost,
       }}
     >
       {children}
