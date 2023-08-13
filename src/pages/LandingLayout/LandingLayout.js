@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom';
-import landingImage from '../../assets/landingPageImg.svg';
+import landingImage from '../../Assets/landingPageImg.svg';
 import './LandingLayout.css';
 
 const LandingLayout = () => {

@@ -2,8 +2,8 @@ import { useFormik } from 'formik';
 import { useContext } from 'react';
 import * as Yup from 'yup';
 
-import { AuthContext } from '../../context/AuthContext';
-import Button from '../../components/Button/Button';
+import { AuthContext } from '../../Context/AuthContext';
+import Button from '../../Components/Button/Button';
 
 const Login = () => {
   const { loginHandler } = useContext(AuthContext);

@@ -1,12 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
-
 import { makeServer } from './server';
 
 import './index.css';
 import App from './App';
-import { AppProvider } from './context/AppContext';
+import { AppProvider } from './Context/AppContext';
 
 makeServer();
 

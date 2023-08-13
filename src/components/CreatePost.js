@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import { Button, Card, FloatingLabel, Form } from 'react-bootstrap';
-import { AuthContext } from '../context/AuthContext';
-import { PostsContext } from '../context/PostsContext';
+import { AuthContext } from '../Context/AuthContext';
+import { PostsContext } from '../Context/PostsContext';
 
 const CreatePost = () => {
   const { loggedInUser, token } = useContext(AuthContext);

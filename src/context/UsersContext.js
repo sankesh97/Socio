@@ -94,6 +94,7 @@ const UsersProvider = ({ children }) => {
         addToBookmark,
         removeFromBookmark,
         bookmarksList,
+        getBookmarks,
       }}
     >
       {children}

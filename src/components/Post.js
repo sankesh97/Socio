@@ -1,8 +1,9 @@
 import { useContext } from 'react';
-import dateDiffHandler from '../utils/dateDiffHandler';
-import { PostsContext } from '../context/PostsContext';
-import { AuthContext } from '../context/AuthContext';
-import { UsersContext } from '../context/UsersContext';
+
+import { PostsContext } from '../Context/PostsContext';
+import { AuthContext } from '../Context/AuthContext';
+import { UsersContext } from '../Context/UsersContext';
+import dayjs from 'dayjs';
 
 const Post = ({ postInfo, userList }) => {
   const { _id, userName, content, createdAt, likes } = postInfo;
@@ -68,7 +69,7 @@ const Post = ({ postInfo, userList }) => {
           />{' '}
           <strong>{`${userName}`}</strong>
         </div>
-        <div>{dateDiffHandler(createdAt)}</div>
+        <div>{dayjs(createdAt).format('DD/MM/YYYY')}</div>
       </div>
       <div className='card-body'>
         <p className='card-text'>{content}</p>

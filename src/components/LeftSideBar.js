@@ -4,7 +4,8 @@ import { LinkContainer } from 'react-router-bootstrap';
 
 const LeftSideBar = () => {
   return (
-    <div className='d-flex flex-column justify-content-between sticky-md-top'>
+    <div className='sticky-md-top py-2'>
+      <div className=''></div>
       <Card>
         <div className='d-grid gap-2'>
           <LinkContainer to='/user/home'>
@@ -27,14 +28,8 @@ const LeftSideBar = () => {
               <i className='bi bi-person'></i> Profile
             </Button>
           </LinkContainer>
-          <LinkContainer to='/user/home'>
-            <Button variant='outline-light'>
-              <i className='bi bi-plus-square'></i> Create New Post
-            </Button>
-          </LinkContainer>
         </div>
       </Card>
-      <div>Hello</div>
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom';
-import Header from '../../components/Header/Header';
-import LeftSideBar from '../../components/LeftSideBar';
-import RightSideBar from '../../components/RightSideBar';
+import Header from '../../Components/Header/Header';
+import LeftSideBar from '../../Components/LeftSideBar';
+import RightSideBar from '../../Components/RightSideBar';
 
 const UserLayout = () => {
   return (
