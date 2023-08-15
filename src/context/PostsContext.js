@@ -46,7 +46,6 @@ export const PostsProvider = ({ children }) => {
         { headers: { authorization: token } }
       );
       if (status === 200 || 201) setPostList(data.posts);
-      console.log(status, data);
     } catch (error) {
       console.log(error);
     }

@@ -1,41 +1,48 @@
 import { Button, Card } from 'react-bootstrap';
 import Post from '../components/Post';
+import { useLocation } from 'react-router-dom';
+import FollowButton from './FollowButton';
 
-const ProfileComponent = ({ user, userNamePostList }) => {
+const ProfileComponent = ({ user, userNamePostList, userList }) => {
+  const location = useLocation();
   return (
     <div className='p-2'>
       <div className='text-center'>
         <img
           alt=''
-          src={user.Avatar}
+          src={user?.Avatar}
           width='100px'
           className='img-fluid rounded-circle border'
         />
         <h4 className='fw-semibold'>
-          {user.firstName} {user.lastName}
+          {user?.firstName} {user?.lastName}
         </h4>
         <p>
-          {user.userName} | {user.portfolioURL}
+          {user?.userName} | {user?.portfolioURL}
         </p>
-        <Button variant='outline-light' onClick={() => {}}>
-          Edit Profile
-        </Button>
+        {location.pathname === '/user/profile' ? (
+          <Button variant='outline-light' onClick={() => {}}>
+            Edit Profile
+          </Button>
+        ) : (
+          <FollowButton userId={user?._id} />
+        )}
         <br />
         <br />
-        <p>{user.bio}</p>
+        <p>{user?.bio}</p>
         <br />
         <Card>
           <div className='row p-3'>
             <div className='col'>
-              <h5>{user.following.length}</h5>
+              <h5>{user?.following.length}</h5>
               <h6>Following</h6>
             </div>
             <div className='col'>
-              <h5>{user.followers.length}</h5>
+              <h5>{user?.followers.length}</h5>
               <h6>Posts</h6>
             </div>
             <div className='col'>
-              <h5>{user.followers.length}</h5>
+              <h5>{user?.followers.length}</h5>
               <h6>Followers</h6>
             </div>
           </div>
@@ -51,6 +58,7 @@ const ProfileComponent = ({ user, userNamePostList }) => {
               key={postInfo._id}
               postInfo={postInfo}
               loggedInUser={user}
+              userList={userList}
             ></Post>
           ))
         ) : (

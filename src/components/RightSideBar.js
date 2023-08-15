@@ -2,6 +2,7 @@ import { useContext, useState } from 'react';
 import Card from './Card';
 import { UsersContext } from '../context/UsersContext';
 import FollowButton from './FollowButton';
+import { NavLink } from 'react-router-dom';
 
 const RightSideBar = () => {
   const { userList } = useContext(UsersContext);
@@ -40,19 +41,26 @@ const RightSideBar = () => {
               .map((user) => (
                 <div
                   key={user._id}
-                  className='d-flex my-3 justify-content-around border border-dark'
+                  className='d-flex p-3 justify-content-between border'
                 >
-                  <img
-                    src={user.Avatar}
-                    className='rounded-circle'
-                    style={{ maxWidth: '30px', maxHeight: '30px' }}
-                    alt={user.userName}
-                  />
-                  <div className='mx-2'>
-                    <h6>{user.firstName}</h6>
-                    <p>{`@${user.userName}`}</p>
+                  <NavLink to={`/user/${user._id}`}>
+                    <img
+                      src={user.Avatar}
+                      className='rounded-circle'
+                      style={{ maxWidth: '30px', maxHeight: '30px' }}
+                      alt={user.userName}
+                    />
+                  </NavLink>
+                  <NavLink
+                    className='text-decoration-none text-light mx-2'
+                    to={`/user/${user._id}`}
+                  >
+                    <h6>{user.firstName + ' ' + user.lastName}</h6>
+                  </NavLink>
+
+                  <div>
+                    <FollowButton userId={user._id} />
                   </div>
-                  <FollowButton />
                 </div>
               ))}
         </div>

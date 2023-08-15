@@ -67,7 +67,7 @@ const Post = ({ postInfo, userList }) => {
         <div>
           <img
             className='rounded-circle img-fluid'
-            src={userList.find((user) => user.userName === userName).Avatar}
+            src={userList?.find((user) => user.userName === userName).Avatar}
             alt={userName}
             width='36px'
           />{' '}

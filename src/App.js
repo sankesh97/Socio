@@ -27,10 +27,10 @@ function App() {
           </Route>
           <Route path='/user' element={<UserLayout />}>
             <Route path='home' element={<Home />}></Route>
-            <Route path='profile/:userId' element={<Profile />}></Route>
+            <Route path='profile' element={<Profile />}></Route>
             <Route path='explore' element={<Explore />}></Route>
             <Route path='bookmark' element={<Bookmark />}></Route>
-            <Route path=':_id' element={<Profile />}></Route>
+            <Route path=':userId' element={<Profile />}></Route>
           </Route>
         </Routes>
       </div>

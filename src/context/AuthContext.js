@@ -124,6 +124,7 @@ export const AuthProvider = ({ children }) => {
         addToBookmark,
         removeFromBookmark,
         getBookmarks,
+        setLoggedInUser,
       }}
     >
       {children}
