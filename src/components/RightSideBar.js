@@ -3,10 +3,12 @@ import Card from './Card';
 import { UsersContext } from '../context/UsersContext';
 import FollowButton from './FollowButton';
 import { NavLink } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
 
 const RightSideBar = () => {
   const { userList } = useContext(UsersContext);
   const [searchText, setSearchText] = useState();
+  const { loggedInUser } = useContext(AuthContext);
   return (
     <div className='d-flex flex-column justify-content-between sticky-md-top my-2'>
       <Card>
@@ -27,15 +29,16 @@ const RightSideBar = () => {
             userList
               .filter((user) =>
                 searchText
-                  ? user.firstName
+                  ? user._id !== loggedInUser._id &&
+                    (user.firstName
                       .toLowerCase()
                       .includes(searchText.toLowerCase()) ||
-                    user.lastName
-                      .toLowerCase()
-                      .includes(searchText.toLowerCase()) ||
-                    user.userName
-                      .toLowerCase()
-                      .includes(searchText.toLowerCase())
+                      user.lastName
+                        .toLowerCase()
+                        .includes(searchText.toLowerCase()) ||
+                      user.userName
+                        .toLowerCase()
+                        .includes(searchText.toLowerCase()))
                   : false
               )
               .map((user) => (

@@ -57,7 +57,7 @@ const UsersProvider = ({ children }) => {
         setUserList((prevState) =>
           prevState.reduce(
             (newUserList, currentUser) =>
-              data.followUser?._id === currentUser._id
+              data.followUser._id === currentUser._id
                 ? [...newUserList, data.followUser]
                 : [...newUserList],
             []
@@ -82,7 +82,7 @@ const UsersProvider = ({ children }) => {
         setUserList((prevState) =>
           prevState.reduce(
             (newUserList, currentUser) =>
-              data.followUser?._id === currentUser._id
+              data.followUser._id === currentUser._id
                 ? [...newUserList, data.followUser]
                 : [...newUserList],
             []

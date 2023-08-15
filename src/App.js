@@ -14,6 +14,7 @@ import Explore from './pages/Explore/Explore';
 import Bookmark from './pages/Bookmark/Bookmark';
 import { ToastContainer } from 'react-toastify';
 import Home from './pages/Home/Home';
+import { RequiresAuth } from './components/RequiresAuth';
 
 function App() {
   return (
@@ -26,11 +27,46 @@ function App() {
             <Route path='register' element={<Register />}></Route>
           </Route>
           <Route path='/user' element={<UserLayout />}>
-            <Route path='home' element={<Home />}></Route>
-            <Route path='profile' element={<Profile />}></Route>
-            <Route path='explore' element={<Explore />}></Route>
-            <Route path='bookmark' element={<Bookmark />}></Route>
-            <Route path=':userId' element={<Profile />}></Route>
+            <Route
+              path='home'
+              element={
+                <RequiresAuth>
+                  <Home />
+                </RequiresAuth>
+              }
+            ></Route>
+            <Route
+              path='profile'
+              element={
+                <RequiresAuth>
+                  <Profile />
+                </RequiresAuth>
+              }
+            ></Route>
+            <Route
+              path='explore'
+              element={
+                <RequiresAuth>
+                  <Explore />
+                </RequiresAuth>
+              }
+            ></Route>
+            <Route
+              path='bookmark'
+              element={
+                <RequiresAuth>
+                  <Bookmark />
+                </RequiresAuth>
+              }
+            ></Route>
+            <Route
+              path=':userId'
+              element={
+                <RequiresAuth>
+                  <Profile />
+                </RequiresAuth>
+              }
+            ></Route>
           </Route>
         </Routes>
       </div>
