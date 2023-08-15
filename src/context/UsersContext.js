@@ -6,7 +6,6 @@ const UsersContext = createContext();
 const UsersProvider = ({ children }) => {
   const [userList, setUserList] = useState([]);
   const [currentUser, setCurrentUser] = useState();
-  const [bookmarksList, setBookmarksList] = useState([]);
 
   // Get All Users
   const getUsers = async () => {
@@ -34,7 +33,7 @@ const UsersProvider = ({ children }) => {
       const { status, data } = await axios.post(
         `/api/users/edit`,
         { userData },
-        { authorization: localStorage.getItem('token') }
+        { headers: { authorization: localStorage.getItem('token') } }
       );
       if (status === 200) setCurrentUser(data.user);
     } catch (error) {
@@ -42,42 +41,29 @@ const UsersProvider = ({ children }) => {
     }
   };
 
-  //Add to Bookmark
-  const addToBookmark = async (postId, token) => {
+  //Follow User
+  const FollowUser = async (followuserId) => {
     try {
       const { status, data } = await axios.post(
-        `/api/users/bookmark/${postId}`,
+        `/api/users/follow/${followuserId}`,
         {},
-        { headers: { authorization: token } }
+        { headers: { authorization: localStorage.getItem('token') } }
       );
-      if (status === 200 || 201) setBookmarksList(data.bookmarks);
-      console.log(data);
+      if (status === 200) console.log(data);
     } catch (error) {
       console.log(error);
     }
   };
 
-  // Remove from Bookmark
-  const removeFromBookmark = async (postId, token) => {
+  //UnFollow User
+  const UnFollowUser = async (followuserId) => {
     try {
       const { status, data } = await axios.post(
-        `/api/users/remove-bookmark/${postId}`,
+        `/api/users/unfollow/${followuserId}`,
         {},
-        { headers: { authorization: token } }
+        { headers: { authorization: localStorage.getItem('token') } }
       );
-      if (status === 200 || 201) setBookmarksList(data.bookmarks);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  // Get all the Bookmarks
-  const getBookmarks = async (token) => {
-    try {
-      const { status, data } = await axios.get(`/api/users/bookmark`, {
-        headers: { authorization: token },
-      });
-      if (status === 200) setBookmarksList(data.bookmarks);
+      if (status === 200) console.log(data);
     } catch (error) {
       console.log(error);
     }
@@ -91,10 +77,8 @@ const UsersProvider = ({ children }) => {
         getUsers,
         GetAUser,
         editUser,
-        addToBookmark,
-        removeFromBookmark,
-        bookmarksList,
-        getBookmarks,
+        FollowUser,
+        UnFollowUser,
       }}
     >
       {children}

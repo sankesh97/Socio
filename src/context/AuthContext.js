@@ -59,6 +59,60 @@ export const AuthProvider = ({ children }) => {
     setLoggedInUser();
     navigate('/');
   };
+
+  //Add to Bookmark
+  const addToBookmark = async (postId, token) => {
+    try {
+      const { status, data } = await axios.post(
+        `/api/users/bookmark/${postId}`,
+        {},
+        { headers: { authorization: token } }
+      );
+      if (status === 200 || 201)
+        setLoggedInUser((prevState) => ({
+          ...prevState,
+          bookmarks: data.bookmarks,
+        }));
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // Remove from Bookmark
+  const removeFromBookmark = async (postId, token) => {
+    try {
+      const { status, data } = await axios.post(
+        `/api/users/remove-bookmark/${postId}`,
+        {},
+        { headers: { authorization: token } }
+      );
+      if (status === 200 || 201)
+        setLoggedInUser((prevState) => ({
+          ...prevState,
+          bookmarks: data.bookmarks,
+        }));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // Get all the Bookmarks
+  const getBookmarks = async (token) => {
+    try {
+      const { status, data } = await axios.get(`/api/users/bookmark`, {
+        headers: { authorization: token },
+      });
+      if (status === 200)
+        setLoggedInUser((prevState) => ({
+          ...prevState,
+          bookmarks: data.bookmarks,
+        }));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -67,6 +121,9 @@ export const AuthProvider = ({ children }) => {
         loggedInUser,
         logoutHandler,
         token,
+        addToBookmark,
+        removeFromBookmark,
+        getBookmarks,
       }}
     >
       {children}

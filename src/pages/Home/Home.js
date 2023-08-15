@@ -11,6 +11,7 @@ const Home = () => {
   const { loggedInUser } = useContext(AuthContext);
   const { userList, getUsers } = useContext(UsersContext);
   const [sortBasedOn, setSortBasedOn] = useState();
+
   useEffect(() => {
     getUsers();
     getPosts();
@@ -19,15 +20,18 @@ const Home = () => {
   const sortedList = sortBasedOn
     ? sortBasedOn === 'Trending'
       ? postList.sort((a, b) => {
-          return a.likes.likeCount - b.like.likeCount;
+          return a.likes.likeCount - b.likes.likeCount;
         })
-      : (postList.sort = (a, b) => {
-          return new Date(a.createdAt) - new Date(b.createdAt);
+      : postList.sort((a, b) => {
+          return new Date(b.createdAt) - new Date(a.createdAt);
         })
     : postList;
+
   return (
     <>
-      <CreatePost />
+      <div className='my-2'>
+        <CreatePost />
+      </div>
       <hr />
       <div className='d-flex justify-content-between'>
         <h3>Latest Posts</h3>

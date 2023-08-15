@@ -2,19 +2,25 @@ import { useContext } from 'react';
 import { UsersContext } from '../../Context/UsersContext';
 import { PostsContext } from '../../Context/PostsContext';
 import Post from '../../Components/Post';
+import { AuthContext } from '../../Context/AuthContext';
 
 const Bookmark = () => {
-  const { bookmarksList, removeFromBookmark } = useContext(UsersContext);
+  const { loggedInUser } = useContext(AuthContext);
   const { postList } = useContext(PostsContext);
+  const { userList } = useContext(UsersContext);
   return (
     <>
-      <h2>Your Bookmarks</h2>
-      {postList ? (
-        postList
-          .filter((post) => bookmarksList)
-          .map((bookmark) => <Post postInfo={bookmark}></Post>)
+      <h2 className='py-2'>Your Bookmarks</h2>
+      <hr />
+      {loggedInUser.bookmarks.length > 0 ? (
+        loggedInUser.bookmarks.map((bookmark) => (
+          <Post
+            userList={userList}
+            postInfo={postList.find((post) => post._id === bookmark._id)}
+          ></Post>
+        ))
       ) : (
-        <p>Add the product to Bookmarks</p>
+        <p>Add the posts to Bookmarks</p>
       )}
     </>
   );
