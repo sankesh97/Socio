@@ -21,7 +21,7 @@ const Home = () => {
   const sortedList = sortBasedOn
     ? sortBasedOn === 'Trending'
       ? postList.sort((a, b) => {
-          return a.likes.likeCount - b.likes.likeCount;
+          return b.likes.likeCount - a.likes.likeCount;
         })
       : postList.sort((a, b) => {
           return new Date(b.createdAt) - new Date(a.createdAt);
@@ -34,7 +34,7 @@ const Home = () => {
         <CreatePost />
       </div>
       <hr />
-      <div className='d-flex justify-content-between'>
+      <div className='d-flex justify-content-between py-3'>
         <h3>Latest Posts</h3>
         <div>
           <Form.Select

@@ -9,7 +9,7 @@ const Header = () => {
     <>
       <nav className='navbar py-2'>
         <div className='container'>
-          <NavLink style={{ textDecoration: 'none' }} to='/'>
+          <NavLink style={{ textDecoration: 'none' }} to='/user/home'>
             <h1 className='navbar-brand'>Socio</h1>
           </NavLink>
           <button
