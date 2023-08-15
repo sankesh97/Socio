@@ -1,5 +1,4 @@
 import { Button, Card } from 'react-bootstrap';
-import Post from './Post';
 
 const ProfileComponent = ({ user }) => {
   return (
