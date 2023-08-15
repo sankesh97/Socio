@@ -7,7 +7,7 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [loggedInUser, setLoggedInUser] = useLocalStorage('loggedInUser', null);
-  const [token, setToken] = useLocalStorage('token');
+  const [token, setToken] = useLocalStorage('token', null);
   const navigate = useNavigate();
 
   // Singup Handler

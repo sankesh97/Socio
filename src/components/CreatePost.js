@@ -23,6 +23,7 @@ const CreatePost = () => {
               className='btn-teal'
               onClick={() => {
                 createNewPost(token, postContent);
+                setPostContent('');
               }}
             >
               Post

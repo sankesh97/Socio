@@ -1,6 +1,7 @@
 import { Button, Card } from 'react-bootstrap';
+import Post from '../components/Post';
 
-const ProfileComponent = ({ user }) => {
+const ProfileComponent = ({ user, userNamePostList }) => {
   return (
     <div className='p-2'>
       <div className='text-center'>
@@ -16,7 +17,7 @@ const ProfileComponent = ({ user }) => {
         <p>
           {user.userName} | {user.portfolioURL}
         </p>
-        <Button variant='outline-dark' onClick={() => {}}>
+        <Button variant='outline-light' onClick={() => {}}>
           Edit Profile
         </Button>
         <br />
@@ -24,7 +25,7 @@ const ProfileComponent = ({ user }) => {
         <p>{user.bio}</p>
         <br />
         <Card>
-          <div className='row'>
+          <div className='row p-3'>
             <div className='col'>
               <h5>{user.following.length}</h5>
               <h6>Following</h6>
@@ -43,8 +44,8 @@ const ProfileComponent = ({ user }) => {
       </div>
       <div>
         <hr />
-        <h2 className='text-center'>Your Posts</h2>
-        {/* {userNamePostList ? (
+        <h2>Your Posts</h2>
+        {userNamePostList ? (
           userNamePostList.map((postInfo) => (
             <Post
               key={postInfo._id}
@@ -54,7 +55,7 @@ const ProfileComponent = ({ user }) => {
           ))
         ) : (
           <p>There are no posts</p>
-        )} */}
+        )}
       </div>
     </div>
   );
