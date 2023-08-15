@@ -2,6 +2,7 @@ import { createContext } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import useLocalStorage from 'use-local-storage';
+import Toaster from '../components/Toaster';
 
 export const AuthContext = createContext();
 
@@ -30,8 +31,8 @@ export const AuthProvider = ({ children }) => {
       setToken(response.data.encodedToken);
       navigate('/user/home');
       console.log(loggedInUser);
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      Toaster('ERROR', error.response.data.errors[0]);
     }
   };
 
@@ -48,8 +49,8 @@ export const AuthProvider = ({ children }) => {
         setLoggedInUser(response.data.foundUser);
         navigate('/user/home');
       }
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      Toaster('ERROR', error.response.data.errors[0]);
     }
   };
 
@@ -75,7 +76,7 @@ export const AuthProvider = ({ children }) => {
         }));
       console.log(data);
     } catch (error) {
-      console.log(error);
+      Toaster('ERROR', error.response.data.errors[0]);
     }
   };
 
@@ -93,7 +94,7 @@ export const AuthProvider = ({ children }) => {
           bookmarks: data.bookmarks,
         }));
     } catch (error) {
-      console.log(error);
+      Toaster('ERROR', error.response.data.errors[0]);
     }
   };
 
@@ -109,7 +110,7 @@ export const AuthProvider = ({ children }) => {
           bookmarks: data.bookmarks,
         }));
     } catch (error) {
-      console.log(error);
+      Toaster('ERROR', error.response.data.errors[0]);
     }
   };
 

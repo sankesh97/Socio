@@ -4,7 +4,7 @@ import { AuthContext } from '../context/AuthContext';
 import { PostsContext } from '../context/PostsContext';
 
 const CreatePost = () => {
-  const { loggedInUser, token } = useContext(AuthContext);
+  const { loggedInUser } = useContext(AuthContext);
   const { createNewPost } = useContext(PostsContext);
   const [postContent, setPostContent] = useState();
 
@@ -15,14 +15,14 @@ const CreatePost = () => {
           <Card.Header className='d-flex justify-content-between'>
             <img
               className='rounded-circle img-fluid'
-              src={loggedInUser.Avatar}
+              src={`/UserProfileImages/${loggedInUser.Avatar}.jpeg`}
               alt={loggedInUser.username}
               width='36px'
             />
             <Button
               className='btn-teal'
               onClick={() => {
-                createNewPost(token, postContent);
+                createNewPost(postContent);
                 setPostContent('');
               }}
             >

@@ -65,9 +65,6 @@ const Login = () => {
               ? formik.errors.password
               : null}
           </div>
-          {/* <button type='submit' className='btn btn-primary btn-teal'>
-                    Submit
-                  </button> */}
           <Button type='submit'>Submit</Button>
         </form>
       </div>

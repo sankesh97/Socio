@@ -1,7 +1,8 @@
-import { Button, Card } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 import Post from '../components/Post';
 import { useLocation } from 'react-router-dom';
 import FollowButton from './FollowButton';
+import EditProfileModal from './EditProfileModal';
 
 const ProfileComponent = ({ user, userNamePostList, userList }) => {
   const location = useLocation();
@@ -10,7 +11,7 @@ const ProfileComponent = ({ user, userNamePostList, userList }) => {
       <div className='text-center'>
         <img
           alt=''
-          src={user?.Avatar}
+          src={`/UserProfileImages/${user?.Avatar}.jpeg`}
           width='100px'
           className='img-fluid rounded-circle border'
         />
@@ -21,9 +22,10 @@ const ProfileComponent = ({ user, userNamePostList, userList }) => {
           {user?.userName} | {user?.portfolioURL}
         </p>
         {location.pathname === '/user/profile' ? (
-          <Button variant='outline-light' onClick={() => {}}>
-            Edit Profile
-          </Button>
+          // <Button variant='outline-light' onClick={() => {}}>
+          //   Edit Profile
+          // </Button>
+          <EditProfileModal userData={user} />
         ) : (
           <FollowButton userId={user?._id} />
         )}

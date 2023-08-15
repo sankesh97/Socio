@@ -15,12 +15,13 @@ const Profile = () => {
 
   useEffect(() => {
     getUsers();
+    console.log(userId);
     getPostsByUsername(userId ? userId : loggedInUser.userName);
-  }, []);
+  }, [loggedInUser, userId]);
 
   return (
     <>
-      {loggedInUser ? (
+      {loggedInUser || userId ? (
         <ProfileComponent
           userNamePostList={userNamePostList}
           user={

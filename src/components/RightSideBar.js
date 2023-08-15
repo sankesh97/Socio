@@ -3,7 +3,6 @@ import { UsersContext } from '../context/UsersContext';
 import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import Card from './Card';
-import FollowButton from './FollowButton';
 
 const RightSideBar = () => {
   const { userList } = useContext(UsersContext);
@@ -48,7 +47,7 @@ const RightSideBar = () => {
                 >
                   <NavLink to={`/user/${user._id}`}>
                     <img
-                      src={user.Avatar}
+                      src={`/UserProfileImages/${user.Avatar}.jpeg`}
                       className='rounded-circle'
                       style={{ maxWidth: '30px', maxHeight: '30px' }}
                       alt={user.userName}
@@ -60,10 +59,6 @@ const RightSideBar = () => {
                   >
                     <h6>{user.firstName + ' ' + user.lastName}</h6>
                   </NavLink>
-
-                  <div>
-                    <FollowButton userId={user._id} />
-                  </div>
                 </div>
               ))}
         </div>

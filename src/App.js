@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 import LandingLayout from './pages/LandingLayout/LandingLayout';
 import Login from './pages/Login/Login';
@@ -70,18 +71,7 @@ function App() {
           </Route>
         </Routes>
       </div>
-      <ToastContainer
-        position='bottom-right'
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme='dark'
-      />
+      <ToastContainer />
     </>
   );
 }

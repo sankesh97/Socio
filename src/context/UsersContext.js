@@ -1,6 +1,7 @@
 import { createContext, useContext, useState } from 'react';
 import axios from 'axios';
 import { AuthContext } from './AuthContext';
+import Toaster from '../components/Toaster';
 
 const UsersContext = createContext();
 
@@ -15,8 +16,8 @@ const UsersProvider = ({ children }) => {
       const { status, data } = await axios.get(`/api/users`);
 
       if (status === 200) setUserList(data.users);
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      Toaster('ERROR', error.response.data.errors[0]);
     }
   };
 
@@ -25,8 +26,8 @@ const UsersProvider = ({ children }) => {
     try {
       const { status, data } = await axios.get(`/api/users/${userId}`);
       if (status === 200) setCurrentUser(data.user);
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      Toaster('ERROR', error.response.data.errors[0]);
     }
   };
 
@@ -38,9 +39,14 @@ const UsersProvider = ({ children }) => {
         { userData },
         { headers: { authorization: localStorage.getItem('token') } }
       );
-      if (status === 200) setCurrentUser(data.user);
+      if (status === 200 || 201) {
+        console.log(data);
+        setLoggedInUser(data.user);
+        setCurrentUser(data.user);
+      }
+      Toaster('SUCCESS', 'Profile Edited Successfully');
     } catch (error) {
-      console.log(error);
+      Toaster('ERROR', error.response.data.errors[0]);
     }
   };
 
@@ -64,8 +70,9 @@ const UsersProvider = ({ children }) => {
           )
         );
       }
+      Toaster('SUCCESS', 'Followed Successfully');
     } catch (error) {
-      console.log(error);
+      Toaster('ERROR', error.response.data.errors[0]);
     }
   };
 
@@ -89,8 +96,9 @@ const UsersProvider = ({ children }) => {
           )
         );
       }
+      Toaster('SUCCESS', 'Unfollowed Successfully');
     } catch (error) {
-      console.log(error);
+      Toaster('ERROR', error.response.data.errors[0]);
     }
   };
 
