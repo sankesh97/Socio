@@ -101,7 +101,7 @@ const Post = ({ postInfo, userList }) => {
             alt={postInfo.userName}
             width='36px'
           />{' '}
-          <strong>{postInfo.userName}</strong>
+          <strong className='mx-2'>{postInfo.userName}</strong>
         </div>
         <div>{dayjs(postInfo.createdAt).format('DD/MM/YYYY')}</div>
       </div>

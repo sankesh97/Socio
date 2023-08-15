@@ -16,7 +16,11 @@ const Profile = () => {
   useEffect(() => {
     getUsers();
     console.log(userId);
-    getPostsByUsername(userId ? userId : loggedInUser.userName);
+    getPostsByUsername(
+      userId
+        ? userList.find((user) => user._id === userId).userName
+        : loggedInUser.userName
+    );
   }, [loggedInUser, userId]);
 
   return (
