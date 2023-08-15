@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from 'react';
 import { Form } from 'react-bootstrap';
 
-import { UsersContext } from '../../Context/UsersContext';
-import CreatePost from '../../Components/CreatePost';
-import Post from '../../Components/Post';
-import { PostsContext } from '../../Context/PostsContext';
-import { AuthContext } from '../../Context/AuthContext';
+import { UsersContext } from '../../context/UsersContext';
+import CreatePost from '../../components/CreatePost';
+import Post from '../../components/Post';
+import { PostsContext } from '../../context/PostsContext';
+import { AuthContext } from '../../context/AuthContext';
 
 const Home = () => {
   const { postList, getPosts } = useContext(PostsContext);

@@ -1,8 +1,8 @@
 import { useContext } from 'react';
-import { UsersContext } from '../../Context/UsersContext';
-import { PostsContext } from '../../Context/PostsContext';
-import Post from '../../Components/Post';
-import { AuthContext } from '../../Context/AuthContext';
+import { UsersContext } from '../../context/UsersContext';
+import { PostsContext } from '../../context/PostsContext';
+import Post from '../../components/Post';
+import { AuthContext } from '../../context/AuthContext';
 
 const Bookmark = () => {
   const { loggedInUser } = useContext(AuthContext);

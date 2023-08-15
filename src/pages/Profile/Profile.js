@@ -1,8 +1,8 @@
 import { useContext, useEffect } from 'react';
-import { PostsContext } from '../../Context/PostsContext';
-import { AuthContext } from '../../Context/AuthContext';
+import { PostsContext } from '../../context/PostsContext';
+import { AuthContext } from '../../context/AuthContext';
 import { useParams } from 'react-router-dom';
-import ProfileComponent from '../../Components/ProfileComponent';
+import ProfileComponent from '../../components/ProfileComponent';
 
 const Profile = () => {
   const { userId } = useParams();

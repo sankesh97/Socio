@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { UsersContext } from '../Context/UsersContext';
+import { UsersContext } from '../context/UsersContext';
 
 const FollowButton = () => {
   const { FollowUser } = useContext(UsersContext);

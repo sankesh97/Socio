@@ -5,9 +5,9 @@ import { makeServer } from './server';
 
 import './index.css';
 import App from './App';
-import { AuthProvider } from './Context/AuthContext';
-import { UsersProvider } from './Context/UsersContext';
-import { PostsProvider } from './Context/PostsContext';
+import { AuthProvider } from './context/AuthContext';
+import { UsersProvider } from './context/UsersContext';
+import { PostsProvider } from './context/PostsContext';
 
 makeServer();
 

@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 
-import { PostsContext } from '../Context/PostsContext';
-import { AuthContext } from '../Context/AuthContext';
+import { PostsContext } from '../context/PostsContext';
+import { AuthContext } from '../context/AuthContext';
 import dayjs from 'dayjs';
 
 const Post = ({ postInfo, userList }) => {

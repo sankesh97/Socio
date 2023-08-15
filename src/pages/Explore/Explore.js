@@ -1,8 +1,8 @@
 import { useContext, useEffect } from 'react';
-import { AuthContext } from '../../Context/AuthContext';
-import { PostsContext } from '../../Context/PostsContext';
-import Post from '../../Components/Post';
-import { UsersContext } from '../../Context/UsersContext';
+import { AuthContext } from '../../context/AuthContext';
+import { PostsContext } from '../../context/PostsContext';
+import Post from '../../components/Post';
+import { UsersContext } from '../../context/UsersContext';
 
 const Explore = () => {
   const { loggedInUser } = useContext(AuthContext);

@@ -4,16 +4,16 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
-import LandingLayout from './Pages/LandingLayout/LandingLayout';
-import Login from './Pages/Login/Login';
-import Register from './Pages/Register/Register';
-import Landing from './Pages/Landing/Landing';
-import UserLayout from './Pages/UserLayout/UserLayout';
-import Profile from './Pages/Profile/Profile';
-import Explore from './Pages/Explore/Explore';
-import Bookmark from './Pages/Bookmark/Bookmark';
+import LandingLayout from './pages/LandingLayout/LandingLayout';
+import Login from './pages/Login/Login';
+import Register from './pages/Register/Register';
+import Landing from './pages/Landing/Landing';
+import UserLayout from './pages/UserLayout/UserLayout';
+import Profile from './pages/Profile/Profile';
+import Explore from './pages/Explore/Explore';
+import Bookmark from './pages/Bookmark/Bookmark';
 import { ToastContainer } from 'react-toastify';
-import Home from './Pages/Home/Home';
+import Home from './pages/Home/Home';
 
 function App() {
   return (

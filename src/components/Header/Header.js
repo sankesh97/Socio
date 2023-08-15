@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import './Header.css';
 import { useContext } from 'react';
-import { AuthContext } from '../../Context/AuthContext';
+import { AuthContext } from '../../context/AuthContext';
 
 const Header = () => {
   const { logoutHandler } = useContext(AuthContext);

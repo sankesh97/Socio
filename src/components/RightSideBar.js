@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
 import Card from './Card';
-import { UsersContext } from '../Context/UsersContext';
+import { UsersContext } from '../context/UsersContext';
 import FollowButton from './FollowButton';
 
 const RightSideBar = () => {

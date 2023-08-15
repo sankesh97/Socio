@@ -1,10 +1,10 @@
 import { Server, Model, RestSerializer } from 'miragejs';
-import { posts } from './Backend/db/posts';
-import { users } from './Backend/db/users';
+import { posts } from './backend/db/posts';
+import { users } from './backend/db/users';
 import {
   loginHandler,
   signupHandler,
-} from './Backend/controllers/AuthController';
+} from './backend/controllers/AuthController';
 import {
   createPostHandler,
   getAllpostsHandler,
@@ -14,7 +14,7 @@ import {
   likePostHandler,
   dislikePostHandler,
   getAllUserPostsHandler,
-} from './Backend/controllers/PostController';
+} from './backend/controllers/PostController';
 import {
   followUserHandler,
   getAllUsersHandler,
@@ -24,7 +24,7 @@ import {
   removePostFromBookmarkHandler,
   unfollowUserHandler,
   editUserHandler,
-} from './Backend/controllers/UserController';
+} from './backend/controllers/UserController';
 
 export function makeServer({ environment = 'development' } = {}) {
   return new Server({
