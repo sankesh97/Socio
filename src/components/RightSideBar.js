@@ -1,9 +1,9 @@
 import { useContext, useState } from 'react';
-import Card from './Card';
 import { UsersContext } from '../context/UsersContext';
-import FollowButton from './FollowButton';
 import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
+import Card from './Card';
+import FollowButton from './FollowButton';
 
 const RightSideBar = () => {
   const { userList } = useContext(UsersContext);
