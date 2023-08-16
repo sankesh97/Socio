@@ -1,8 +1,9 @@
-import { createContext } from 'react';
+import { createContext, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import useLocalStorage from 'use-local-storage';
 import Toaster from '../components/Toaster';
+import { flushSync } from 'react-dom';
 
 export const AuthContext = createContext();
 
@@ -26,11 +27,14 @@ export const AuthProvider = ({ children }) => {
         firstName,
         lastName,
         userName,
-        Avatar: 'On',
+        Avatar: 'One',
       });
       if (response.status === 200 || 201) {
-        setLoggedInUser(response.data.createdUser);
-        setToken(response.data.encodedToken);
+        flushSync(() => {
+          setLoggedInUser(response.data.createdUser);
+          setToken(response.data.encodedToken);
+        });
+        navigate('/user/home');
       }
     } catch (error) {
       Toaster('ERROR', error.response.data.errors[0]);

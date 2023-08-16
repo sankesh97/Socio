@@ -2,6 +2,7 @@ import { useContext, useState } from 'react';
 
 import Button from '../../components/Button/Button';
 import { AuthContext } from '../../context/AuthContext';
+import Toaster from '../../components/Toaster';
 
 const Register = () => {
   const { signupHandler } = useContext(AuthContext);
@@ -30,7 +31,12 @@ const Register = () => {
         <form
           onSubmit={(event) => {
             event.preventDefault();
-            signupHandler(formValues);
+            formValues.password !== formValues.confirmPassword
+              ? Toaster(
+                  'ERROR',
+                  'Password Mis-Match. Please check your passwords'
+                )
+              : signupHandler(formValues);
           }}
         >
           {/* First Name */}
