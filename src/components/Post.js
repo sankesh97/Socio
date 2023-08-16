@@ -136,7 +136,7 @@ const Post = ({ postInfo, userList }) => {
                 DeletePost(postInfo._id);
               }}
             >
-              <i class='bi bi-trash3 text-info'></i> Delete Post
+              <i className='bi bi-trash3 text-info'></i> Delete Post
             </button>
           )}
         </div>

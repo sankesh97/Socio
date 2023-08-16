@@ -13,6 +13,9 @@ const Home = () => {
   const { userList, getUsers } = useContext(UsersContext);
   const [sortBasedOn, setSortBasedOn] = useState();
 
+  const followersList = loggedInUser.following.map((user) => user.userName);
+  console.log(followersList);
+
   useEffect(() => {
     getUsers();
     getPosts();
@@ -51,14 +54,16 @@ const Home = () => {
       </div>
       <div>
         {sortedList ? (
-          sortedList.map((postInfo) => (
-            <Post
-              key={postInfo._id}
-              postInfo={postInfo}
-              loggedInUser={loggedInUser}
-              userList={userList}
-            ></Post>
-          ))
+          sortedList
+            .filter((post) => followersList.includes(post.userName))
+            .map((postInfo) => (
+              <Post
+                key={postInfo._id}
+                postInfo={postInfo}
+                loggedInUser={loggedInUser}
+                userList={userList}
+              ></Post>
+            ))
         ) : (
           <p>There are no posts</p>
         )}
