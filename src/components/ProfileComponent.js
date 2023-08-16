@@ -3,9 +3,12 @@ import Post from '../components/Post';
 import { useLocation } from 'react-router-dom';
 import FollowButton from './FollowButton';
 import EditProfileModal from './EditProfileModal';
+import { useContext } from 'react';
+import { PostsContext } from '../context/PostsContext';
 
 const ProfileComponent = ({ user, userNamePostList, userList }) => {
   const location = useLocation();
+  const { postList } = useContext(PostsContext);
   return (
     <div className='p-2'>
       <div className='text-center'>
@@ -22,9 +25,6 @@ const ProfileComponent = ({ user, userNamePostList, userList }) => {
           {user?.userName} | {user?.portfolioURL}
         </p>
         {location.pathname === '/user/profile' ? (
-          // <Button variant='outline-light' onClick={() => {}}>
-          //   Edit Profile
-          // </Button>
           <EditProfileModal userData={user} />
         ) : (
           <FollowButton userId={user?._id} />
@@ -40,7 +40,12 @@ const ProfileComponent = ({ user, userNamePostList, userList }) => {
               <h6>Following</h6>
             </div>
             <div className='col'>
-              <h5>{user?.followers.length}</h5>
+              <h5>
+                {
+                  postList.filter((post) => post.userName === user?.userName)
+                    .length
+                }
+              </h5>
               <h6>Posts</h6>
             </div>
             <div className='col'>

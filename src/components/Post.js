@@ -131,12 +131,12 @@ const Post = ({ postInfo, userList }) => {
           {EditabilityFactor}
           {loggedInUser.userName === postInfo.userName && (
             <button
-              className='btn btn-outline-light'
+              className='btn btn-light'
               onClick={() => {
                 DeletePost(postInfo._id);
               }}
             >
-              <i class='bi bi-trash3'></i> Delete Post
+              <i class='bi bi-trash3 text-info'></i> Delete Post
             </button>
           )}
         </div>

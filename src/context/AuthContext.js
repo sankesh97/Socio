@@ -26,11 +26,12 @@ export const AuthProvider = ({ children }) => {
         firstName,
         lastName,
         userName,
+        Avatar: 'On',
       });
-      setLoggedInUser(response.data.user);
-      setToken(response.data.encodedToken);
-      navigate('/user/home');
-      console.log(loggedInUser);
+      if (response.status === 200 || 201) {
+        setLoggedInUser(response.data.createdUser);
+        setToken(response.data.encodedToken);
+      }
     } catch (error) {
       Toaster('ERROR', error.response.data.errors[0]);
     }
