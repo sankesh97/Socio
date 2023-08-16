@@ -20,19 +20,21 @@ const Home = () => {
     getPosts();
   }, []);
 
-  const sortedList = sortBasedOn
-    ? sortBasedOn === 'Trending'
-      ? postList
-          .sort((a, b) => {
+  const sortedList = (
+    sortBasedOn
+      ? sortBasedOn === 'Trending'
+        ? postList.sort((a, b) => {
             return b.likes.likeCount - a.likes.likeCount;
           })
-          .filter((post) => followersList.includes(post.userName))
-      : postList
-          .sort((a, b) => {
+        : postList.sort((a, b) => {
             return new Date(b.createdAt) - new Date(a.createdAt);
           })
-          .filter((post) => followersList.includes(post.userName))
-    : postList.filter((post) => followersList.includes(post.userName));
+      : postList
+  ).filter(
+    (post) =>
+      followersList.includes(post.userName) ||
+      post.userName === loggedInUser.userName
+  );
 
   return (
     <>
@@ -66,7 +68,7 @@ const Home = () => {
             ></Post>
           ))
         ) : (
-          <p>There are no posts here. Please Follow People.</p>
+          <p>There are no posts. Please Follow People.</p>
         )}
       </div>
     </>
