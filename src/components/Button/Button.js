@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import './Button.css';
 
-const Button = ({ children, to, type }) => {
+const Button = ({ children, to, type, onclick }) => {
   const navigate = useNavigate();
   const addLink = to ? (
     <button
@@ -14,7 +14,7 @@ const Button = ({ children, to, type }) => {
       {children}
     </button>
   ) : (
-    <button className='btn btn-teal' type={type}>
+    <button onClick={onclick} className='btn btn-teal' type={type}>
       {children}
     </button>
   );

@@ -1,10 +1,8 @@
-import { Field, Formik, useFormik, Form } from 'formik';
+import { Formik, Form } from 'formik';
 import { useContext } from 'react';
 import * as Yup from 'yup';
-
 import { AuthContext } from '../../context/AuthContext';
 import Button from '../../components/Button/Button';
-import { Row } from 'react-bootstrap';
 
 const Login = () => {
   const { loginHandler } = useContext(AuthContext);
@@ -42,7 +40,7 @@ const Login = () => {
                 id='userName'
                 value={values.userName}
                 onChange={handleChange}
-                isValid={touched.userName && !errors.userName}
+                isvalid={touched.userName && !errors.userName}
                 className='form-control'
                 aria-describedby='userNameHelpBlock'
               />
@@ -62,7 +60,7 @@ const Login = () => {
                 className='form-control'
                 value={values.password}
                 onChange={handleChange}
-                isValid={touched.password && !errors.password}
+                isvalid={touched.password && !errors.password}
                 aria-describedby='passwordHelpBlock'
               />
               <div id='passwordHelpBlock' className='form-text'>
@@ -70,10 +68,23 @@ const Login = () => {
               </div>
             </div>
             <Button type='submit'>Submit</Button>
+            <br />
+            <br />
           </Form>
         )}
       </Formik>
       <br />
+      <Button
+        type='button'
+        onclick={() => {
+          loginHandler({
+            userName: 'chicku97',
+            password: 'Chicku97',
+          });
+        }}
+      >
+        Login as a Guest
+      </Button>
     </div>
   );
 };

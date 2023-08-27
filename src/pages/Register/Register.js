@@ -2,7 +2,6 @@ import { useContext, useState } from 'react';
 import * as Yup from 'yup';
 import Button from '../../components/Button/Button';
 import { AuthContext } from '../../context/AuthContext';
-import Toaster from '../../components/Toaster';
 import { Form, Formik } from 'formik';
 
 const Register = () => {
